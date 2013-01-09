@@ -5,11 +5,19 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', '1.3.6'
+group :development do
+	gem 'sqlite3'
+	gem 'newrelic_rpm'
+end
 
-# New Relic
-gem 'newrelic_rpm'
+group :test do
+	gem 'sqlite3'
+end
 
+group :production do
+	gem 'pg'
+	gem 'newrelic_rpm'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
