@@ -102,7 +102,7 @@ class SoundsController < ApplicationController
     public_dir = "/public"
     sound_file_dir = sound.sound_file.to_s
     sound_file_path = rails_root_dir + public_dir + sound_file_dir
-    ls_results = system("ls #{sound_file_path}")
+    ls_results = system("ls -l #{sound_file_path}")
     puts "sound_file_path = #{sound_file_path}: #{ls_results}"
     # puts "ls -R: #{system("ls -R")}"
     audio = Speech::AudioToText.new(sound_file_path, :verbose => true)
