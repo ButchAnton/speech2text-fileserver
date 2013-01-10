@@ -42,6 +42,13 @@ class SoundsController < ApplicationController
   # POST /sounds
   # POST /sounds.json
   def create
+    
+    if params[:sound]
+      puts "params[:sound] is valid"
+    else
+      puts "params[:sound] is nil"      
+    end
+
     @sound = Sound.new(params[:sound])
     @sound.text = toText(@sound)
 
