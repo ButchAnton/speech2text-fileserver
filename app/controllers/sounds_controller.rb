@@ -98,10 +98,13 @@ class SoundsController < ApplicationController
   # Given a Sound, locate the asset in the file system, convert it to text, and return the text.
 
   def toText(sound)
-    puts "Rails.root = #{Rails.root.to_s}"
-    puts "sound.sound_file = #{sound.sound_file.to_s}"
-    puts "ls -R: #{system("ls -R")}"
-    audio = Speech::AudioToText.new(Rails.root.to_s + '/public' + sound.sound_file.to_s, :verbose => true)
+    rails_root_dir = Rails.root.to_s
+    public_dir = "/public"
+    sound_file_dir = sound.sound_file.to_s
+    sound_file_path = rails_root_dir + public_dir + sound_file_dir
+    puts "sound_file_path = #{sound_file_path}: #{system("ls #{sound_file_path}")}"
+    # puts "ls -R: #{system("ls -R")}"
+    audio = Speech::AudioToText.new(sound_file_path, :verbose => true)
     if audio
       puts "audio is valid: #{audio.inspect}"
     else
