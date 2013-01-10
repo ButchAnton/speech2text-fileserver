@@ -42,9 +42,10 @@ class SoundsController < ApplicationController
   # POST /sounds
   # POST /sounds.json
   def create
-    
+
     if params[:sound]
-      puts "params[:sound] is valid"
+      puts "params[:sound] is valid: #{params[:sound].inspect}"
+
     else
       puts "params[:sound] is nil"      
     end
