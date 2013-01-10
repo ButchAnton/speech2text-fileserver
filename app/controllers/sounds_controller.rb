@@ -104,6 +104,7 @@ class SoundsController < ApplicationController
     sound_file_path = rails_root_dir + public_dir + sound_file_dir
     ls_results = system("ls -l #{sound_file_path}")
     puts "sound_file_path = #{sound_file_path}: #{ls_results}"
+    puts '#{system("which ffmpeg")}'
     # puts "ls -R: #{system("ls -R")}"
     audio = Speech::AudioToText.new(sound_file_path, :verbose => true)
     if audio
