@@ -43,16 +43,8 @@ class SoundsController < ApplicationController
   # POST /sounds.json
   def create
 
-    if params[:sound]
-      puts "params[:sound] is valid: #{params[:sound].inspect}"
-
-    else
-      puts "params[:sound] is nil"      
-    end
-
     @sound = Sound.new(params[:sound])
     @sound.text = toText(@sound)
-
 
     respond_to do |format|
       if @sound.save
@@ -102,18 +94,7 @@ class SoundsController < ApplicationController
     public_dir = "/public"
     sound_file_dir = sound.sound_file.to_s
     sound_file_path = rails_root_dir + public_dir + sound_file_dir
-    ls_results = system("ls -l #{sound_file_path}")
-    puts "sound_file_path = #{sound_file_path}: #{ls_results}"
-    puts "which ffmpeg: #{system("which ffmpeg")}"
-    puts "ls -lR /app/vendor: #{system("ls -lR /app/vendor")}"
-    puts "echo $PATH: #{system("echo $PATH")}"
-    # puts "ls -R: #{system("ls -R")}"
     audio = Speech::AudioToText.new(sound_file_path, :verbose => true)
-    if audio
-      puts "audio is valid: #{audio.inspect}"
-    else
-      puts "audio is nil"
-    end
     text = audio.to_text
     return text
   end
