@@ -105,7 +105,7 @@ class SoundsController < ApplicationController
     ls_results = system("ls -l #{sound_file_path}")
     puts "sound_file_path = #{sound_file_path}: #{ls_results}"
     puts "which ffmpeg: #{system("which ffmpeg")}"
-    puts "ls -lR /app/vendor: #{system("ls -l /app/vendor")}"
+    puts "ls -lR /app/vendor: #{system("ls -lR /app/vendor")}"
     puts "echo $PATH: #{system("echo $PATH")}"
     # puts "ls -R: #{system("ls -R")}"
     audio = Speech::AudioToText.new(sound_file_path, :verbose => true)
